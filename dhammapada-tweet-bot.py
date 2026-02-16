@@ -1,5 +1,6 @@
 #!/usr/bin/env python
 
+import datetime
 import os
 import json
 import random
@@ -34,7 +35,8 @@ FORMAT_TWITTER = """\
 FORMAT_LOCAL = """\
 {verse}
 
-{signature:>{line_size}}\
+{signature:>{line_size}}
+{date:>{line_size}}\
 """
 
 
@@ -66,6 +68,11 @@ class DhammapadaTweetBot:
     def format_texts(self):
         # FIXME: put the chunk maker here
 
+        formatted_date_time = datetime.datetime.now().strftime("%a %b %d %Y, "
+                                                               "%I:%M:%S%p "
+                                                               "GMT-3")
+        date = f"[{formatted_date_time}]"
+
         verse = self.verse
         signature = self.signature
 
@@ -76,6 +83,7 @@ class DhammapadaTweetBot:
 
         message_local = FORMAT_LOCAL.format(verse=verse,
                                             signature=signature,
+                                            date=date,
                                             line_size=line_size)
 
         formatted_texts = {

@@ -39,7 +39,7 @@ class DhammapadaBot:
         verse_numbers, verse = self.get_verse()
         verses = str(", ").join([str(verse_number)
                                  for verse_number in verse_numbers])
-        signature = f"— Dhammapada {verses}"
+        signature = f"— Lord Buddha; Dhammapada {verses}"
 
         self.verse = verse
         self.verse_numbers = verse_numbers

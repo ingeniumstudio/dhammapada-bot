@@ -7,7 +7,7 @@ import random
 
 SCRIPT_PATH = os.path.dirname(os.path.abspath(__file__))
 
-#  DEBUG = True if os.environ.get('DEBUG') else False  # not implemented tho
+DEBUG = True if os.environ.get('DEBUG') else False  # not implemented tho
 
 # This file contains The Dhamapada in JSON format
 DHAMMAPADA_JSON_FILEPATH = f"{SCRIPT_PATH}/dhammapada.json"
@@ -109,6 +109,12 @@ class DhammapadaBot:
     #
     #      return lenghtiest_line
 
+    def print_verse(self):
+
+        verse = self.formatted_texts['local']
+
+        print(verse)
+
 
 if __name__ == "__main__":
 
@@ -116,6 +122,10 @@ if __name__ == "__main__":
 
     bot.get_random_verse()
     bot.format_texts()
+
+    if DEBUG:
+        bot.print_verse()
+        exit(0)
 
     bot.write_verse_to_local_file()
 

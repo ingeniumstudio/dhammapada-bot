@@ -15,11 +15,17 @@ DHAMMAPADA_JSON_FILEPATH = f"{SCRIPT_PATH}/dhammapada.json"
 # This file contains the currently (last) posted verse
 VERSE_FILEPATH = os.path.expanduser("~/.dhammapada-bot.txt")
 
+#  FORMAT_LOCAL = """\
+#  {verse}
+#
+#  {signature:>{line_size}}
+#  {date:>{line_size}}\
+#  """
 FORMAT_LOCAL = """\
 {verse}
 
-{signature:>{line_size}}
-{date:>{line_size}}\
+{signature}
+{date}\
 """
 
 
@@ -55,12 +61,15 @@ class DhammapadaBot:
         verse = self.verse
         signature = self.signature
 
-        line_size = self.text_width(text=verse)
+        #  line_size = self.text_width(text=verse)
 
+        #  message_local = FORMAT_LOCAL.format(verse=verse,
+        #                                      signature=signature,
+        #                                      date=date,
+        #                                      line_size=line_size)
         message_local = FORMAT_LOCAL.format(verse=verse,
                                             signature=signature,
-                                            date=date,
-                                            line_size=line_size)
+                                            date=date)
 
         formatted_texts = {
                 "local": message_local,
@@ -90,15 +99,15 @@ class DhammapadaBot:
 
         return dhammapada_json[random_choice]
 
-    def text_width(self, text):
-        """Iterates over all the lines of the verse and return the number
-               of characters from the lenghtiest line; used for formatting
-        """
-
-        lines = text.split('\n')
-        lenghtiest_line = max(map(len, lines))
-
-        return lenghtiest_line
+    #  def text_width(self, text):
+    #      """Iterates over all the lines of the verse and return the number
+    #             of characters from the lenghtiest line; used for formatting
+    #      """
+    #
+    #      lines = text.split('\n')
+    #      lenghtiest_line = max(map(len, lines))
+    #
+    #      return lenghtiest_line
 
 
 if __name__ == "__main__":
